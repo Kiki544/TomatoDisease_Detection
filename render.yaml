@@ -13,8 +13,8 @@ services:
   # Frontend service (React)
 services:
   - type: web
-    name: tomato-frontend
+    name: tomato-Frontend
     env: node
     plan: free
-    buildCommand: "cd frontend && npm install && npm run build"
-    staticPublishPath: "frontend/build"
+    buildCommand: "cd Frontend && npm install && npm run build"
+    staticPublishPath: "Frontend/build"
