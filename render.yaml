@@ -1,0 +1,19 @@
+services:
+  # Backend service (Flask/Django)
+  - type: web
+    name: tomato-backend
+    env: python
+    plan: free
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "gunicorn backend.app:app"  # change path if needed
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11
+
+  # Frontend service (React)
+  - type: web
+    name: tomato-frontend
+    env: node
+    plan: free
+    buildCommand: "cd Frontend && npm install && npm run build"
+    staticPublishPath: "Frontend/build"
