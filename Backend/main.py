@@ -14,7 +14,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-@app.post("/predict")
+@app.post("/predict/")
 async def classify_image(file: UploadFile = File(...)):
     image_bytes = await file.read()
     try:
