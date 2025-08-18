@@ -1,59 +1,59 @@
-/* app.css */
+/* app.css - Restored to original simple style */
 
 body {
     font-family: Arial, sans-serif;
-    background-color: #f7f9f9;
     margin: 0;
     padding: 0;
-    display: flex;
-    justify-content: center;
   }
   
   .container {
-    max-width: 600px;
-    width: 100%;
-    padding: 20px;
     text-align: center;
-    background-color: #ffffff;
-    margin-top: 40px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    border-radius: 10px;
+    padding: 20px;
   }
   
   h1 {
     color: #208fd0;
+  }
+  
+  footer {
+    margin-top: 50px;
+    padding: 20px;
+    background-color: #e8f5e9;
+    color: #208fd0;
+    text-align: center;
+  }
+  
+  footer img {
+    height: 60px;
     margin-bottom: 10px;
   }
   
-  p {
-    color: #333333;
-  }
-  
-  .form-area {
-    margin-top: 20px;
+  footer p {
+    margin: 0;
+    font-size: 14px;
   }
   
   input[type="file"] {
-    margin-bottom: 15px;
+    margin-top: 10px;
   }
   
   .preview {
+    margin-top: 10px;
     max-width: 100%;
-    max-height: 250px;
-    margin: 10px 0;
-    border: 2px solid #208fd0;
-    border-radius: 10px;
+    max-height: 200px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
   }
   
   button {
+    margin-top: 10px;
+    padding: 8px 16px;
     background-color: #208fd0;
     color: white;
     border: none;
-    padding: 10px 20px;
-    font-size: 16px;
-    border-radius: 5px;
+    border-radius: 4px;
     cursor: pointer;
-    margin-top: 10px;
   }
   
   button:hover {
@@ -62,19 +62,13 @@ body {
   
   .result {
     margin-top: 20px;
-    background-color: #e8f5e9;
-    padding: 15px;
-    border-radius: 8px;
-    border: 1px solid #208fd0;
   }
   
   .result h2 {
-    margin-bottom: 10px;
     color: #208fd0;
   }
   
   .result p {
-    margin: 5px 0;
     font-weight: bold;
   }
   
