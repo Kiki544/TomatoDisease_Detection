@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import './app.css'; // Create this CSS file for styling
+import './app.css'; // optional CSS for styling
 
 function App() {
   const [file, setFile] = useState(null);
@@ -8,47 +8,39 @@ function App() {
   const [preview, setPreview] = useState(null);
   const [loading, setLoading] = useState(false);
 
-
   const handleChange = (e) => {
     const selected = e.target.files[0];
     setFile(selected);
     setResult(null);
-    if (selected) {
-      setPreview(URL.createObjectURL(selected));
-    }
+    if (selected) setPreview(URL.createObjectURL(selected));
   };
 
   const handleSubmit = async (e) => {
-  e.preventDefault();
+    e.preventDefault();
+    if (!file) return alert("Please select an image first.");
 
-  if (!file) {
-    alert("Please select an image first.");
-    return;
-  }
+    const formData = new FormData();
+    formData.append('file', file);
 
-  const formData = new FormData();
-  formData.append('file', file);
-
-  setLoading(true); // Start loading
-
-  try {
-    const res = await axios.post(
-      'https://tomato-disease-detector-giwx.onrender.com/predict/',
-      formData
-    );
-    setResult(res.data);
-  } catch (error) {
-    console.error('Error uploading file:', error);
-    alert("Failed to upload or classify the image.");
-  } finally {
-    setLoading(false); // Stop loading
-  }
-};
+    setLoading(true);
+    try {
+      const res = await axios.post(
+        'https://tomato-disease-detector-giwx.onrender.com/predict', // no trailing slash
+        formData
+      );
+      setResult(res.data);
+    } catch (error) {
+      console.error('Error uploading file:', error);
+      alert("Failed to upload or classify the image.");
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <div className="container">
-      <h1>ð¿ Tomato Disease detector</h1>
-      <p>Upload a tomato leaf image and let our AI help you detect diseases early.</p>
+      <h1>🍅 Tomato Disease Detector</h1>
+      <p>Upload a tomato leaf image and let our AI detect diseases.</p>
 
       <div className="form-area">
         <input type="file" accept="image/*" onChange={handleChange} />
@@ -59,9 +51,15 @@ function App() {
 
       {result && (
         <div className="result">
-          <h2>Diagnosis</h2>
-          <p><strong>Disease:</strong> {result.class}</p>
-          <p><strong>Confidence:</strong> {(result.confidence * 100).toFixed(2)}%</p>
+          {result.error ? (
+            <p>Error: {result.error}</p>
+          ) : (
+            <>
+              <h2>Diagnosis</h2>
+              <p><strong>Disease:</strong> {result.class}</p>
+              <p><strong>Confidence:</strong> {(result.confidence * 100).toFixed(2)}%</p>
+            </>
+          )}
         </div>
       )}
     </div>
