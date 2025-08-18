@@ -1,19 +1,19 @@
 services:
-  # Backend service (Flask/Django)
+  # Backend service (FastAPI)
   - type: web
     name: tomato-backend
     env: python
     plan: free
     buildCommand: "pip install -r requirements.txt"
-    startCommand: "gunicorn backend.app:app"  # change path if needed
+    # Use Python directly to run FastAPI with uvicorn
+    startCommand: "python main.py"
     envVars:
       - key: PYTHON_VERSION
         value: 3.11
 
   # Frontend service (React)
-services:
   - type: web
-    name: tomato-Frontend
+    name: tomato-frontend
     env: node
     plan: free
     buildCommand: "cd Frontend && npm install && npm run build"
