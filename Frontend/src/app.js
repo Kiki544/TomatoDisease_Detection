@@ -25,7 +25,7 @@ function App() {
     setLoading(true);
     try {
         const res = await axios.post(
-            'https://tomatodisease-detection-backend.onrender.com/predict',
+            'https://tomatodisease-detection-backend.onrender.com/predict/',
             formData      
         );
       setResult(res.data);

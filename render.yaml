@@ -1,20 +1,25 @@
 services:
   # Backend service (FastAPI)
   - type: web
-    name: tomato-backend
+    name: TomatoDisease_Detection_Backend
     env: python
     plan: free
     buildCommand: "pip install -r requirements.txt"
-    # Use Python directly to run FastAPI with uvicorn
-    startCommand: "python main.py"
+    startCommand: "uvicorn main:app --host 0.0.0.0 --port $PORT"
     envVars:
       - key: PYTHON_VERSION
         value: 3.11
+    repo: https://github.com/Kiki544/TomatoDisease_Detection
+    branch: main
+    rootDir: Backend
 
   # Frontend service (React)
   - type: web
-    name: tomato-frontend
+    name: TomatoDisease_Detection_Frontend
     env: node
     plan: free
     buildCommand: "cd Frontend && npm install && npm run build"
     staticPublishPath: "Frontend/build"
+    repo: https://github.com/Kiki544/TomatoDisease_Detection
+    branch: main
+    rootDir: Frontend
