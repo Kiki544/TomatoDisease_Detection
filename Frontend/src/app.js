@@ -24,10 +24,10 @@ function App() {
 
     setLoading(true);
     try {
-      const res = await axios.post(
-        'https://tomato-disease-detector-giwx.onrender.com/predict', // no trailing slash
-        formData
-      );
+        const res = await axios.post(
+            'https://tomatodisease-detection-backend.onrender.com/predict',
+            formData      
+        );
       setResult(res.data);
     } catch (error) {
       console.error('Error uploading file:', error);
