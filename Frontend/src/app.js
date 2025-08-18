@@ -43,12 +43,47 @@ function App() {
       <p>Upload a tomato leaf image or take a picture to detect diseases.</p>
 
       <div className="form-area" style={{ margin: '20px auto', maxWidth: '90%' }}>
-        <input
-          type="file"
-          accept="image/*"
-          onChange={handleChange}
-          style={{ maxWidth: '100%', margin: '10px 0' }}
-        />
+        {/* Camera input */}
+        <label 
+          style={{
+            display: 'block',
+            marginBottom: '10px',
+            cursor: 'pointer',
+            color: '#208fd0',
+            fontWeight: 'bold'
+          }}
+        >
+          📷 Take a Photo
+          <input
+            type="file"
+            accept="image/*"
+            capture="environment"
+            onChange={handleChange}
+            style={{ display: 'none' }}
+          />
+        </label>
+
+        {/* Gallery input */}
+        <label 
+          style={{
+            display: 'block',
+            marginBottom: '10px',
+            cursor: 'pointer',
+            color: '#208fd0',
+            fontWeight: 'bold'
+          }}
+        >
+          🖼️ Choose from Gallery
+          <input
+            type="file"
+            accept="image/*"
+            capture={null}
+            onChange={handleChange}
+            style={{ display: 'none' }}
+          />
+        </label>
+
+        {/* Preview */}
         {preview && (
           <img
             src={preview}
@@ -56,6 +91,7 @@ function App() {
             style={{ width: '80%', maxWidth: '300px', borderRadius: '10px', marginTop: '10px' }}
           />
         )}
+
         <br />
         <button
           onClick={handleSubmit}
