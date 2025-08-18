@@ -2,25 +2,89 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Tomato Disease Detector</title>
   <style>
-    body { font-family: Arial; text-align: center; margin: 20px; background: #f7f9f9; }
-    h1 { color: #208fd0; }
-    #preview { margin-top: 20px; max-width: 300px; border: 2px solid #208fd0; border-radius: 10px; }
-    #fileInput, button { margin: 15px; padding: 10px 15px; font-size: 16px; border-radius: 5px; border: 1px solid #208fd0; }
-    button { background-color: #208fd0; color: white; cursor: pointer; }
-    button:hover { background-color: #105a80; }
-    #result { margin-top: 20px; font-size: 18px; font-weight: bold; color: #208fd0; white-space: pre-line; }
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 0;
+      padding: 20px;
+      background-color: #f7f9f9;
+    }
+    h1 {
+      color: #208fd0;
+      font-size: 2em;
+    }
+    #preview {
+      margin-top: 20px;
+      max-width: 90%;
+      height: auto;
+      border: 2px solid #208fd0;
+      border-radius: 10px;
+    }
+    #fileInput, button {
+      margin: 15px 5px;
+      padding: 10px 15px;
+      font-size: 1em;
+      border-radius: 5px;
+      border: 1px solid #208fd0;
+      max-width: 90%;
+    }
+    button {
+      background-color: #208fd0;
+      color: white;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #105a80;
+    }
+    #result {
+      margin-top: 20px;
+      font-size: 1.2em;
+      font-weight: bold;
+      color: #208fd0;
+      white-space: pre-line;
+    }
+    footer {
+      margin-top: 50px;
+      padding: 20px;
+      background-color: #e8f5e9;
+      color: #208fd0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    footer img {
+      height: 60px;
+      margin-bottom: 10px;
+    }
+
+    @media (max-width: 600px) {
+      h1 { font-size: 1.5em; }
+      #fileInput, button { font-size: 0.9em; padding: 8px 12px; }
+      #result { font-size: 1em; }
+      footer img { height: 50px; }
+    }
   </style>
 </head>
 <body>
-  <h1>Tomato Disease Detector</h1>
-  <input type="file" id="fileInput" accept="image/*" onchange="showPreview(event)" />
+
+  <h1>🍅 Tomato Disease Detector</h1>
+
+  <!-- File input with camera capture -->
+  <input type="file" id="fileInput" accept="image/*" capture="environment" onchange="showPreview(event)" />
   <br>
   <img id="preview" src="" alt="Image Preview" style="display:none;" />
   <br>
   <button onclick="uploadFile()">Detect</button>
+
   <p id="result"></p>
+
+  <footer>
+    <img src="elizade-logo.png" alt="Elizade University Logo" />
+    <p><strong>John Kikiiyin Aboderin</strong> • <em>EU200303-2312</em> • Elizade University</p>
+  </footer>
 
   <script>
     function showPreview(event) {
@@ -42,7 +106,7 @@
 
       try {
         const response = await fetch(
-          "https://tomatodisease-detection-backend.onrender.com/predict/", // backend URL
+          "https://tomatodisease-detection-backend.onrender.com/predict/",
           { method: "POST", body: formData }
         );
         const result = await response.json();
@@ -55,5 +119,6 @@
       }
     }
   </script>
+
 </body>
 </html>
